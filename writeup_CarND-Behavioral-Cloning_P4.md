@@ -18,13 +18,11 @@ The major steps followed to complete this project included:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+__Video output of Autonomous driving__  
+<br/>
+<img src="./output_images/video_output_run2.jpg" width=100% height=100%>
+<br/>
+[download video](https://github.com/matttpj/CarND-Behavioral-Cloning/blob/master/run2.mp4)
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -137,24 +135,10 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 
 I used the Udacity provided images from recording of the vehicle successfully driving 1 lap of the track, with dimensions 320x160 (width x height).
 
-<br/>
-<img src="./output_images/center_2016_12_01_13_30_48_287.jpg" width=40% height=40%>
-<br/>
+Starting with the Center image, and then subsequently working with the Left and Right images and a correction factor (0.2), that would enable the model to help the vehicle re-find the center of the track.
+
+As suggest by the Udacity program, I also augmented the dataset by flipping all the test images to improve the model so that it did not suffer from bias of getting trained only by images from a vehicle that was driving clockwise around the track.
 
 | Left     		|     Center        					|    Right    |
 |:---------------------:|:----------------------------:|:-----------------:|
 | <img src="./output_images/left_2016_12_01_13_30_48_287.jpg">     		|  <img src="./output_images/center_2016_12_01_13_30_48_287.jpg">			| <img src="./output_images/right_2016_12_01_13_30_48_287.jpg"> |
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set.
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
