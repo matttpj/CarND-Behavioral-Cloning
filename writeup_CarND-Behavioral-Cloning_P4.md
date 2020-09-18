@@ -18,11 +18,11 @@ The major steps followed to complete this project included:
 
 [//]: # (Image References)
 
-__Video output of Autonomous driving__  
-<br/>
+__Video output from Autonomous driving recording__  
+[download video](https://github.com/matttpj/CarND-Behavioral-Cloning/blob/master/run2.mp4)
 <img src="./output_images/video_output_run2.jpg" width=100% height=100%>
 <br/>
-[download video](https://github.com/matttpj/CarND-Behavioral-Cloning/blob/master/run2.mp4)
+
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
