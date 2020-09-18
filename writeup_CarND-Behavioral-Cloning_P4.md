@@ -22,7 +22,7 @@ __Output from Autonomous driving recording__
 <img src="./output_images/video_output_run2.jpg" width=100% height=100%>
 [download video](https://github.com/matttpj/CarND-Behavioral-Cloning/blob/master/run2.mp4)
 
-__Example source images used as input__ 
+__Example source images used as input__
 | Left     		|     Center        					|    Right    |
 |:---------------------:|:----------------------------:|:-----------------:|
 | <img src="./output_images/left_2016_12_01_13_30_48_287.jpg">     		|  <img src="./output_images/center_2016_12_01_13_30_48_287.jpg">			| <img src="./output_images/right_2016_12_01_13_30_48_287.jpg"> |
@@ -89,6 +89,7 @@ I first setup my _model.py_ file as described by David Silver in the program vid
 https://github.com/darienmt/CarND-Behavioral-Cloning-P3
 
 In order to gauge how well the model was working, Keras allowed me to easily split my image and steering angle data into a training and validation set.
+I also added an additional layer to my nVidia derived model to provide a single output.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
