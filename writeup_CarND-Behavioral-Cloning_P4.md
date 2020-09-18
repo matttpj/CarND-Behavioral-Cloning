@@ -22,6 +22,7 @@ __Output from Autonomous driving recording__
 <img src="./output_images/video_output_run2.jpg" width=100% height=100%>
 [download video](https://github.com/matttpj/CarND-Behavioral-Cloning/blob/master/run2.mp4)
 
+__Example source images used as input__ 
 | Left     		|     Center        					|    Right    |
 |:---------------------:|:----------------------------:|:-----------------:|
 | <img src="./output_images/left_2016_12_01_13_30_48_287.jpg">     		|  <img src="./output_images/center_2016_12_01_13_30_48_287.jpg">			| <img src="./output_images/right_2016_12_01_13_30_48_287.jpg"> |
