@@ -133,15 +133,12 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 |  | shuffle = True | shuffle the images before saving the model |
 |  | epochs = 5 | recommended by Paul Heraty |
 
-
-![alt text][image1]
-
 #### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
 <br/>
-<img src="./output_images/center_2016_12_01_13_30_48_287.jpg" width=100% height=100%>
+<img src="./output_images/center_2016_12_01_13_30_48_287.jpg" width=40% height=40%>
 <br/>
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
