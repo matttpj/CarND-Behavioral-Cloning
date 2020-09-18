@@ -95,7 +95,7 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and dimensions.
 
-## Pre-processing
+## Image data pre-processing
 | Step      		|     Description	        					|
 |:---------------------:|:---------------------------------------------:|
 | Sequential       		|  Groups a linear stack of layers into a model that Keras can use  							|
@@ -104,7 +104,7 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 
 ## Model parameters derived from nVidia example
 
-| Layer         		|     Description	        					|
+| Layer         		|     Parameter Description	        					|
 |:---------------------:|:---------------------------------------------:|
 | Input         		| 90x320 BGR image   							|
 | Layer 1: Convolution 2D    	| 24 filters, 5x5 kernel, 2x2 stride 	|
@@ -118,14 +118,14 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 | Layer 5: Convolution 2D     	| 64 filters, 3x3 kernel 	|
 | RELU					|												|
 |	Flatten					|												|
-|	Dense		|	100	output									|
+|	Dense		|	100	output dimensions									|
 |	Dense					|	50 output dimensions											|
 |	Dense					|	10 output	dimensions										|
 |	Dense					|	1	 Output	dimensions								|
 |						|												|
 
-## Training
-| Step      		|     Description	        					|
+## Model training
+| Step      		|     Parameter Description        					|
 |:---------------------:|:---------------------------------------------:|
 | model.compile()      		|  loss = 'mse'				| mean square loss to minimise errors |
 |  | optimizer = 'adam'  | more efficient algorithim for calculating gradient descent |
@@ -140,7 +140,9 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][image2]
+<br/>
+<img src="./output_images/center_2016_12_01_13_30_48_287.jpg" width=100% height=100%>
+<br/>
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
 
