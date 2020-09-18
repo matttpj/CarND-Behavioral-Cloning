@@ -18,10 +18,13 @@ The major steps followed to complete this project included:
 
 [//]: # (Image References)
 
-__Video output from Autonomous driving recording__  
-[download video](https://github.com/matttpj/CarND-Behavioral-Cloning/blob/master/run2.mp4)
+__Output from Autonomous driving recording__  
 <img src="./output_images/video_output_run2.jpg" width=100% height=100%>
-<br/>
+[download video](https://github.com/matttpj/CarND-Behavioral-Cloning/blob/master/run2.mp4)
+
+| Left     		|     Center        					|    Right    |
+|:---------------------:|:----------------------------:|:-----------------:|
+| <img src="./output_images/left_2016_12_01_13_30_48_287.jpg">     		|  <img src="./output_images/center_2016_12_01_13_30_48_287.jpg">			| <img src="./output_images/right_2016_12_01_13_30_48_287.jpg"> |
 
 
 ## Rubric Points
@@ -46,12 +49,11 @@ Key files are:
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my _drive.py_ file, the car can be driven autonomously around the track by executing
-```python drive.py models/model_nVidia.h5 run2
-```
+__python drive.py models/model_nVidia.h5 run2__
 
 #### 3. Submission code is usable and readable
 
-The _model.py_ file contains the code for training and saving the convolution neural network; first using a LeNet configuration and second using a nVidia configuration, as recommended by the Udacity program. The nVidia model proved itself to perform well very quickly; eg. enabling the car to complete a lap of the track without leaving the track. The file shows the pipeline I used for training and validating the models and it contains comments to explain how the code works.
+The _model.py_ file contains the code for training and saving the convolution neural network; first using a LeNet configuration and second using a nVidia configuration, as suggested by the Udacity program. The nVidia model proved itself to perform well very quickly; eg. enabling the car to complete a lap of the track without leaving the track. The file shows the steps I used for training and validating the models and it contains comments to explain how the code works; other details are explained below.
 
 ### Model Architecture and Training Strategy
 
@@ -63,9 +65,9 @@ The model includes RELU layers to introduce nonlinearity (code line 20), and the
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21).
+The model does not contain dropout layers to reduce overfitting (model.py lines 21); keeping the epochs low (5 or less) as recommended by Paul Heraty seemed to negate the need for them.
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
@@ -73,7 +75,7 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-The Udacity provided initial set of Training data _IMG/*.jpg_ and _driving_log.csv_ was used very successfully.  No additional training data seemed to be required.
+The Udacity provided initial set of Training data _IMG/*.jpg_ and _driving_log.csv_ was used very successfully.  No additional training data seemed to be required besides data augmentation done by flipping the images to prevent model bias from only driving round the track in an anti-clockwise direction.
 
 ### Model Architecture and Training Strategy
 
@@ -138,7 +140,3 @@ I used the Udacity provided images from recording of the vehicle successfully dr
 Starting with the Center image, and then subsequently working with the Left and Right images and a correction factor (0.2), that would enable the model to help the vehicle re-find the center of the track.
 
 As suggest by the Udacity program, I also augmented the dataset by flipping all the test images to improve the model so that it did not suffer from bias of getting trained only by images from a vehicle that was driving clockwise around the track.
-
-| Left     		|     Center        					|    Right    |
-|:---------------------:|:----------------------------:|:-----------------:|
-| <img src="./output_images/left_2016_12_01_13_30_48_287.jpg">     		|  <img src="./output_images/center_2016_12_01_13_30_48_287.jpg">			| <img src="./output_images/right_2016_12_01_13_30_48_287.jpg"> |
