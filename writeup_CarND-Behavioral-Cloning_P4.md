@@ -8,12 +8,12 @@
 
 **Behavioral Cloning Project**
 
-The goals / steps of this project are the following:
-* Use the simulator to collect data of good driving behavior
-* Build, a convolution neural network in Keras that predicts steering angles from images
-* Train and validate the model with a training and validation set
-* Test that the model successfully drives around track one without leaving the road
-* Summarize the results with a written report
+The major steps followed to complete this project included:
+* Using the simulator to collect data of good driving behavior
+* Building a convolution neural network in Keras that predicts steering angles from images
+* Training and validating the model with a training and validation set
+* Testing that the model successfully drives for at least one lap around the track without leaving the road
+* Summarising the results in a written report
 
 
 [//]: # (Image References)
@@ -30,31 +30,36 @@ The goals / steps of this project are the following:
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
+### Writeup / README
+Here is a link to my [project code](https://github.com/matttpj/CarND-Behavioral-Cloning)  
+
+---
 ### Files Submitted & Code Quality
 
-#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
+#### 1. Submission includes all required files to run the simulator in autonomous mode and save the output
 
-My project includes the following files:
-* model.py containing the script to create and train the model
-* drive.py for driving the car in autonomous mode
-* model.h5 containing a trained convolution neural network
-* writeup_report.md or writeup_report.pdf summarizing the results
+Key files are:
+ * Creates and saves the model: _model.py_   
+ * Model output: _models/model_nVidia.h5_
+ * Runs the model in the simulator and drives the car in Autonomous mode: _drive.py_     
+ * Video output of the car driving round the track: _runX.mp4_      
+ * Writeup that summarises results: _writeup_CarND-Behavioral_Cloning_P4.md_
+
 
 #### 2. Submission includes functional code
-Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing
-```sh
-python drive.py model.h5
+Using the Udacity provided simulator and my _drive.py_ file, the car can be driven autonomously around the track by executing
+```python drive.py models/model_nVidia.h5 run2
 ```
 
 #### 3. Submission code is usable and readable
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+The _model.py_ file contains the code for training and saving the convolution neural network; first using a LeNet configuration and second using a nVidia configuration, as recommended by the Udacity program. The nVidia model proved itself to perform well very quickly; eg. enabling the car to complete a lap of the track without leaving the track. The file shows the pipeline I used for training and validating the models and it contains comments to explain how the code works.
 
 ### Model Architecture and Training Strategy
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24)
+My nVidia derived model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24)
 
 The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18).
 
@@ -70,15 +75,16 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ...
-
-For details about how I created the training data, see the next section.
+The Udacity provided initial set of Training data _IMG/*.jpg_ and _driving_log.csv_ was used very successfully.  No additional training data seemed to be required.
 
 ### Model Architecture and Training Strategy
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+My overall strategy for deriving a model architecture was to start with a LeNet architecture and then try alternatives, including the referenced nVidia approach.
+
+I first setup my _model.py_ file as described by David Silver in the program videos; but I even struggled to load the Training data images and skip the header row in the _driving_log.csv_.  And then I found DarienMT solution which I used as guide to fix this and other challenging issues; eg. loading center, left and right camera images and data from the driving log.   
+https://github.com/darienmt/CarND-Behavioral-Cloning-P3
 
 My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
 
@@ -97,6 +103,45 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+
+## Pre-processing
+| Step      		|     Description	        					|
+|:---------------------:|:---------------------------------------------:|
+| Sequential       		|    							|
+| Lambda   	| Normalise images to mean = 0; set images input shape to height/width/channels (160,320,3)	|
+| Cropping2D  				|	Crop individual images by top/bottom (50,20) and left/right (0,0)											|
+
+## Model parameters derived from nVidia
+
+| Layer         		|     Description	        					|
+|:---------------------:|:---------------------------------------------:|
+| Input         		| 90x320 BGR image   							|
+| Layer 1: Convolution 2D    	| 24 filters, 5x5 kernel, 2x2 stride 	|
+| RELU					|												|									|
+| Layer 2: Convolution 2D     	| 36 filters, 5x5 kernel, 2x2 stride	|
+| RELU					|												|
+| Layer 3: Convolution 2D     	| 48 filters, 5x5 kernel, 2x2 stride 	|
+| RELU					|												|
+| Layer 4: Convolution 2D     	| 64 filters, 3x3 kernel	|
+| RELU					|												|
+| Layer 5: Convolution 2D     	| 64 filters, 3x3 kernel 	|
+| RELU					|												|
+|	Flatten					|												|
+|	Dense		|	100	output									|
+|	Dense					|	50 output dimensions											|
+|	Dense					|	10 output	dimensions										|
+|	Dense					|	1	 Output	dimensions								|
+|						|												|
+
+## Training
+| Step      		|     Description	        					|
+|:---------------------:|:---------------------------------------------:|
+| model.compile()      		|  loss = 'mse'				| mean square loss to minimise errors |
+|  | optimizer = 'adam'  | more efficient algorithim for calculating gradient descent |
+| model.fit()   	|  validation_split = 0.2	| to split test data and use 20% of images at end of epoch for testing |
+|  | shuffle = True | shuffle the images before saving the model |
+|  | epochs = 5 | recommended by Paul Heraty |
+
 
 ![alt text][image1]
 
