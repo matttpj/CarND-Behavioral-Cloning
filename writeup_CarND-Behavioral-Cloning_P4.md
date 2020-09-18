@@ -82,36 +82,27 @@ The Udacity provided initial set of Training data _IMG/*.jpg_ and _driving_log.c
 #### 1. Solution Design Approach
 
 My overall strategy for deriving a model architecture was to start with a LeNet architecture and then try alternatives, including the referenced nVidia approach.
+https://developer.nvidia.com/blog/deep-learning-self-driving-cars/
 
 I first setup my _model.py_ file as described by David Silver in the program videos; but I even struggled to load the Training data images and skip the header row in the _driving_log.csv_.  And then I found DarienMT solution which I used as guide to fix this and other challenging issues; eg. loading center, left and right camera images and data from the driving log.   
 https://github.com/darienmt/CarND-Behavioral-Cloning-P3
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting.
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ...
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+In order to gauge how well the model was working, Keras allowed me to easily split my image and steering angle data into a training and validation set.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and dimensions.
 
 ## Pre-processing
 | Step      		|     Description	        					|
 |:---------------------:|:---------------------------------------------:|
-| Sequential       		|    							|
+| Sequential       		|  Groups a linear stack of layers into a model that Keras can use  							|
 | Lambda   	| Normalise images to mean = 0; set images input shape to height/width/channels (160,320,3)	|
 | Cropping2D  				|	Crop individual images by top/bottom (50,20) and left/right (0,0)											|
 
-## Model parameters derived from nVidia
+## Model parameters derived from nVidia example
 
 | Layer         		|     Description	        					|
 |:---------------------:|:---------------------------------------------:|
@@ -138,7 +129,7 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 |:---------------------:|:---------------------------------------------:|
 | model.compile()      		|  loss = 'mse'				| mean square loss to minimise errors |
 |  | optimizer = 'adam'  | more efficient algorithim for calculating gradient descent |
-| model.fit()   	|  validation_split = 0.2	| to split test data and use 20% of images at end of epoch for testing |
+| model.fit()   	|  validation_split = 0.2	| to split off 20% of image data to be used for testing at end of each epoch |
 |  | shuffle = True | shuffle the images before saving the model |
 |  | epochs = 5 | recommended by Paul Heraty |
 
