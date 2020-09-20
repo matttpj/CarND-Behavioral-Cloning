@@ -18,7 +18,7 @@ The major steps followed to complete this project included:
 
 [//]: # (Image References)
 
-__Output from Autonomous driving recording__  
+__Output from Autonomous driving simulator__  
 <img src="./output_images/video_output_run2.jpg" width=100% height=100%>
 [download video](https://github.com/matttpj/CarND-Behavioral-Cloning/blob/master/run2.mp4)
 
@@ -78,7 +78,7 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 The Udacity provided initial set of Training data _IMG/*.jpg_ and _driving_log.csv_ was used very successfully.  No additional training data seemed to be required besides data augmentation done by flipping the images to prevent model bias from only driving round the track in an anti-clockwise direction.
 
-### Model Architecture and Training Strategy
+### Model Architecture and Training Documentation
 
 #### 1. Solution Design Approach
 
@@ -142,3 +142,12 @@ I used the Udacity provided images from recording of the vehicle successfully dr
 Starting with the Center image, and then subsequently working with the Left and Right images and a correction factor (0.2), that would enable the model to help the vehicle re-find the center of the track.
 
 As suggest by the Udacity program, I also augmented the dataset by flipping all the test images to improve the model so that it did not suffer from bias of getting trained only by images from a vehicle that was driving clockwise around the track.
+
+---
+### Simulation
+__runX.mp4__ using the nVidia model shows car successfully navigating around > 1 lap of the track without leaving the road.
+__run1.mp4__ using the LeNet model fails to navigate a full lap of the track.
+
+---
+### Track two
+__Not attempted__
