@@ -40,7 +40,7 @@ def load_images_controls(dataPath, skipHeader=False, correction=0.2):
     # If the driving log file includes a header row, pass skipHeader=True
     # Read each row and process image path and control value
     #  - center image plus control value (steering | throttle | brake | speed)
-    #  - left | right images + or - correction on control_value
+    #  - left | right images + or - correction on control value
     # Correction is the value to add/substract to the control value when using left/right side cameras
     # Sequentially build lists of images[] and control_values[]
     # Return two numpy arrays of images[], control_values[] as processing is more memory efficient
@@ -120,10 +120,10 @@ def nVidia_model():
 
 print('Loading images and control values')
 X_train, y_train = load_images_controls('data/data', skipHeader=True)
-model = leNet_model()
-#model = nVidia_model()
+#model = leNet_model()
+model = nVidia_model()
 
 print('Training and saving model')
-train_save(model, X_train, y_train, 'models/model_leNet_3.h5')
-#train_save(model, X_train, y_train, 'models/model_nVidia_6.h5')
+#train_save(model, X_train, y_train, 'models/model_leNet_3.h5')
+train_save(model, X_train, y_train, 'models/model_nVidia_8.h5')
 print('The End')
