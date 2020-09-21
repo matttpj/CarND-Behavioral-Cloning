@@ -20,7 +20,7 @@ The major steps followed to complete this project included:
 
 __Output from Autonomous driving simulator__  
 <img src="./output_images/video_output_run2.jpg" width=100% height=100%>
-[download video](https://github.com/matttpj/CarND-Behavioral-Cloning/output_videos/run8_nVidia_60fps.mp4)
+[download video](https://github.com/matttpj/CarND-Behavioral-Cloning/raw/master/output_videos/run8_nVidia_60fps.mp4)
 
 __Example source images used as input__
 | Left     		|     Center        					|    Right    |
