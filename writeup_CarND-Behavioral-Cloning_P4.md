@@ -125,7 +125,7 @@ The final model architecture (model.py lines 81-89 and 105-119) consisted of a c
 |	Dense		|	100	output dimensions									|
 |	Dense					|	50 output dimensions											|
 |	Dense					|	10 output	dimensions										|
-|	Dense					|	1	 Output	dimensions								|
+|	Dense					|	1	 output	dimensions								|
 |						|												|
 
 ## Model training
