@@ -41,11 +41,11 @@ Here is a link to my [project code](https://github.com/matttpj/CarND-Behavioral-
 #### 1. Submission includes all required files to run the simulator in autonomous mode and save the output
 
 Key files are:
- * Creates and saves the model: _model.py_   
- * Model output: _models/model_nVidia_8.h5_
- * Runs the model in the simulator and drives the car in Autonomous mode: _drive.py_     
- * Video output of the car driving round the track: _run8_60fps.mp4_      
- * Writeup that summarises results: _writeup_CarND-Behavioral_Cloning_P4.md_
+ * Creates and saves the model: __model.py__   
+ * Model output: __models/model_nVidia_8.h5__
+ * Runs the model in the simulator and drives the car in Autonomous mode:__drive.py__     
+ * Video output of the car driving round the track: __output_videos/run8_60fps.mp4__      
+ * Writeup that summarises results: __writeup_CarND-Behavioral_Cloning_P4.md__
 
 
 #### 2. Submission includes functional code
@@ -64,7 +64,7 @@ In my models, after instantiating a Keras Sequential model, the image data is pr
 
 My nVidia derived model consists of a convolution neural network with layers of depths between 24 and 64 and kernel size of 5x5 and 3x3 (model.py lines 105-119).
 
-The model includes RELU layers to introduce nonlinearity and then a Flatten layer plus multiple Dense layers to make the prediction or control value that will steer the vehicle so it remains on the track.
+The model includes RELU layers to introduce nonlinearity and then a Flatten layer plus multiple Dense layers to make the prediction (or control value) that will steer the vehicle so it remains on the track.
 
 #### 2. Attempts to reduce overfitting in the model
 
@@ -147,7 +147,7 @@ As suggest by the Udacity program, I also augmented the dataset by flipping all 
 
 ---
 ### Simulation
-__run8_60fps.mp4__ uses the nVidia derived model to show the car successfully navigating around > 1 lap of Track One without leaving the road.
+__output_videos/run8_60fps.mp4__ uses the nVidia derived model to show the car successfully navigating around > 1 lap of Track One without leaving the road.
 
 ---
 ### Track Two
