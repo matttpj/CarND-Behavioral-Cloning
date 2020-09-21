@@ -42,41 +42,43 @@ Here is a link to my [project code](https://github.com/matttpj/CarND-Behavioral-
 
 Key files are:
  * Creates and saves the model: _model.py_   
- * Model output: _models/model_nVidia.h5_
+ * Model output: _models/model_nVidia_8.h5_
  * Runs the model in the simulator and drives the car in Autonomous mode: _drive.py_     
- * Video output of the car driving round the track: _runX.mp4_      
+ * Video output of the car driving round the track: _run8_60fps.mp4_      
  * Writeup that summarises results: _writeup_CarND-Behavioral_Cloning_P4.md_
 
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my _drive.py_ file, the car can be driven autonomously around the track by executing
-__python drive.py models/model_nVidia.h5 run2__
+__python drive.py models/model_nVidia_8.h5 run8__
 
 #### 3. Submission code is usable and readable
 
-The _model.py_ file contains the code for training and saving the convolution neural network; first using a LeNet configuration and second using a nVidia configuration, as suggested by the Udacity program. The nVidia model proved itself to perform well very quickly; eg. enabling the car to complete a lap of the track without leaving the track. The file shows the steps I used for training and validating the models and it contains comments to explain how the code works; other details are explained below.
+The _model.py_ file contains the code for training and saving the convolution neural network. At first, I tried a LeNet derived configuration and subsequently I tried using a nVidia derived configuration, as suggested by the Udacity program. The nVidia model proved itself to perform well very quickly; eg. enabling the car to complete a lap of the track without leaving the track. The file shows the steps I used for training and validating the models and it contains comments to explain how the code works; other details are explained below.
 
 ### Model Architecture and Training Strategy
 
 #### 1. An appropriate model architecture has been employed
 
-My nVidia derived model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24)
+In my models, after instantiating a Keras Sequential model, the image data is pre-processed by normalising images using a lambda layer and cropping images by using a 2D cropping function (model.py line 81-89).
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18).
+My nVidia derived model consists of a convolution neural network with layers of depths between 24 and 64 and kernel size of 5x5 and 3x3 (model.py lines 105-119).
+
+The model includes RELU layers to introduce nonlinearity and then a Flatten layer plus multiple Dense layers to make the prediction or control value that will steer the vehicle so it remains on the track.
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model does not contain dropout layers to reduce overfitting (model.py lines 21); keeping the epochs low (5 or less) as recommended by Paul Heraty seemed to negate the need for them.
+My nVidia derived model does not contain dropout layers to reduce overfitting (model.py lines 105-119); keeping the epochs low (5 or less) as recommended by Paul Heraty seemed to negate the need for them.
 
-The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was tested by running it through the simulator and ensuring that the vehicle could stay on Track One in Autonomous driving mode.
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model was compiled with mean square error loss function and an adam optimizer, so the learning rate was not tuned manually (model.py line 76).
 
 #### 4. Appropriate training data
 
-The Udacity provided initial set of Training data _IMG/*.jpg_ and _driving_log.csv_ was used very successfully.  No additional training data seemed to be required besides data augmentation done by flipping the images to prevent model bias from only driving round the track in an anti-clockwise direction.
+The Udacity provided initial set of Training data _IMG/*.jpg_ and _driving_log.csv_ was used very successfully.  No additional training data seemed to be required besides data augmentation worked very successfully by flipping the images to prevent model bias from only driving round the track in an anti-clockwise direction (model.py line 34).
 
 ### Model Architecture and Training Documentation
 
@@ -89,18 +91,18 @@ I first setup my _model.py_ file as described by David Silver in the program vid
 https://github.com/darienmt/CarND-Behavioral-Cloning-P3
 
 In order to gauge how well the model was working, Keras allowed me to easily split my image and steering angle data into a training and validation set.
-I also added an additional layer to my nVidia derived model to provide a single output.
+I also added an additional layer to my nVidia derived model to provide a single output for steering control value (model.py line 118).
 
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+At the end of the training process, the vehicle is able to drive autonomously around Track One without leaving the road.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and dimensions.
+The final model architecture (model.py lines 81-89 and 105-119) consisted of a convolution neural network with the following layers and dimensions.
 
 ## Image data pre-processing
 | Step      		|     Description	        					|
 |:---------------------:|:---------------------------------------------:|
-| Sequential       		|  Groups a linear stack of layers into a model that Keras can use  							|
+| Sequential       		|  Creates a linear stack of layers into a model that Keras can use  							|
 | Lambda   	| Normalise images to mean = 0; set images input shape to height/width/channels (160,320,3)	|
 | Cropping2D  				|	Crop individual images by top/bottom (50,20) and left/right (0,0)											|
 
@@ -145,9 +147,8 @@ As suggest by the Udacity program, I also augmented the dataset by flipping all 
 
 ---
 ### Simulation
-__runX.mp4__ using the nVidia model shows car successfully navigating around > 1 lap of the track without leaving the road.
-__run1.mp4__ using the LeNet model fails to navigate a full lap of the track.
+__run8_60fps.mp4__ uses the nVidia derived model to show the car successfully navigating around > 1 lap of Track One without leaving the road.
 
 ---
-### Track two
+### Track Two
 __Not attempted__
